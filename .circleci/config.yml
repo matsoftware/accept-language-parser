@@ -13,3 +13,12 @@ jobs:
           name: Run unit tests
           command: swift test
 
+workflows:
+  version: 2
+  tests:
+    jobs:
+      - linux
+
+    jobs:
+      - linux
+      
