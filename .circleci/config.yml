@@ -1,0 +1,15 @@
+version: 2.1
+
+jobs:
+  linux:
+    docker:
+      - image: swift:5.2
+    steps:
+      - checkout
+      - run: 
+          name: Compile code
+          command: swift build
+      - run: 
+          name: Run unit tests
+          command: swift test
+
