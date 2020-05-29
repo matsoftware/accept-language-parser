@@ -13,29 +13,43 @@ import Foundation
 /// where  any two-letter primary-tag is an ISO-639 language abbreviation and any two-letter initial subtag is an ISO-3166 country code.
 public struct ALanguageParser {
 
-    private struct PreferredLanguage {
-        var language: String
-        var weight: Float
-
-        init(_ rawString: String) {
-            let comp = rawString.split(separator: ";")
-            language = String(comp.first ?? "")
-            let rawWeight = String(comp.last ?? "1.0").replacingOccurrences(of: "q=", with: "")
-            weight = Float(rawWeight) ?? 1.0
-        }
-    }
-
     /// Parses and returns the list of user accepted languagges
     /// - Parameter acceptLanguage: A valid RFC-2616 Accept-Language string
     /// - Returns: an ordered list of languages parsed from the `acceptLanguage` string
     public static func parse(_ acceptLanguage: String) -> [String] {
         acceptLanguage.split(separator: ",").compactMap {
-            PreferredLanguage(String($0))
+            AcceptedLanguage(String($0))
         }.sorted {
-            $0.weight > $1.weight
+            $0.quality > $1.quality
         }.map {
-            $0.language
+            $0.code
         }
     }
 
+}
+
+/// Type representing the accepted language returned from a parsed Accept-Language HTTP Header
+public struct AcceptedLanguage: Equatable, Codable {
+    /// Language code
+    public var code: String
+    /// The weight of this AcceptedLanguage in the list
+    public var quality: Float
+    /// The region of the accepted language
+    public var region: String?
+    /// The script code of the accepted language
+    public var script: String?
+
+    init(code: String, quality: Float, region: String?, script: String?) {
+        self.code = code
+        self.quality = quality
+        self.region = region
+        self.script = script
+    }
+
+    fileprivate init(_ rawString: String) {
+        let comp = rawString.split(separator: ";")
+        code = String(comp.first ?? "")
+        let rawWeight = String(comp.last ?? "1.0").replacingOccurrences(of: "q=", with: "")
+        quality = Float(rawWeight) ?? 1.0
+    }
 }

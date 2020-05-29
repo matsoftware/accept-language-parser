@@ -1,7 +1,21 @@
 import XCTest
-import ALanguageParser
+@testable import ALanguageParser
 
 final class ALanguageParserTests: XCTestCase {
+
+    //MARK: AcceptedLanguage
+    func testAcceptedLanguageEquatable() {
+        let left = AcceptedLanguage(code: "it", quality: 1.0, region: "IT", script: "Latin")
+        let right = AcceptedLanguage(code: "it", quality: 1.0, region: "IT", script: "Latin")
+        XCTAssertEqual(left, right)
+    }
+
+    func testAcceptedLanguageCodable() throws {
+        let al = AcceptedLanguage(code: "nn", quality: 0.9, region: "NO", script: nil)
+        let encAl = try JSONEncoder().encode(al)
+        let decAl = try JSONDecoder().decode(AcceptedLanguage.self, from: encAl)
+        XCTAssertEqual(al, decAl)
+    }
 
     //MARK: Valid strings
     func testParseShouldReturnExpectedOrderedLanguages() {
