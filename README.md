@@ -1,2 +1,3 @@
-# accept-language-parser
-HTTP Accept-Language parser in Swift
+# ALanguageParser
+
+HTTP `Accept-Language` parser in Swift.
