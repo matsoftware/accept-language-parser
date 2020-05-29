@@ -53,3 +53,11 @@ public struct AcceptedLanguage: Equatable, Codable {
         quality = Float(rawWeight) ?? 1.0
     }
 }
+
+extension AcceptedLanguage: Comparable {
+
+    public static func < (lhs: AcceptedLanguage, rhs: AcceptedLanguage) -> Bool {
+        lhs.quality < rhs.quality
+    }
+
+}
