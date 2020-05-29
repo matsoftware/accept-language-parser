@@ -41,7 +41,10 @@ final class ALanguageParserTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testParseShouldReturnExpectedOrderedLanguages", testParseShouldReturnExpectedOrderedLanguages),
+        ("testAcceptedLanguageEquatable", testAcceptedLanguageEquatable),
+        ("testAcceptedLanguageCodable", testAcceptedLanguageComparable),
+        ("testAcceptedLanguageComparable", testAcceptedLanguageComparable),
+        ("testParseShouldReturnExpectedOrderedLanguages", testParseShouldReturnExpectedOrderedLanguages)
     ]
 }
 
