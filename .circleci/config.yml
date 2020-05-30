@@ -2,10 +2,12 @@ version: 2.1
 jobs:
   linux-unit-tests:
     docker:
-      - image: cimg/base:2020.01
       - image: swift:5.2
     steps:
       - checkout
+      - run:
+          name: Pre-requisites
+          command: apk update && apk add bash
       - run: 
           name: Run Unit tests and deploy coverage
           command: ./coverage.sh
