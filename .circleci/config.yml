@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: Run Unit tests and deploy coverage
+          name: Run Unit tests
           command: ./coverage.sh
       - persist_to_workspace:
           root: .
