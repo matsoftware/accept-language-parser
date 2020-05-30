@@ -2,9 +2,9 @@ version: 2.1
 jobs:
   linux-unit-tests:
     docker:
+      - image: cimg/base:2020.01
       - image: swift:5.2
-      - image: circleci/python:3.6.5
-    steps:
+      steps:
       - checkout
       - run: 
           name: Run Unit tests and deploy coverage
