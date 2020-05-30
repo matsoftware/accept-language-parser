@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.2
 jobs:
-  linux:
+  linux-unit-tests:
     docker:
       - image: swift:5.2
     steps:
@@ -14,8 +14,9 @@ jobs:
           name: Run unit tests
           command: swift test
 
-  macos:  
-    xcode: 11.5.0
+  mac-unit-tests:
+    macos:  
+      xcode: 11.5.0
     steps:
       - checkout
       - run:
@@ -32,6 +33,6 @@ workflows:
   version: 2
   tests:
     jobs:
-      - linux
-      - macos
+      - linux-unit-tests
+      - macos-unit-tests
       
