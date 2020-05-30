@@ -8,19 +8,7 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: Compile code
-          command: swift build
-      - run: 
-          name: Run unit tests
-          command: swift test
-
-  mac-unit-tests:
-    macos:  
-      xcode: 11.5.0
-    steps:
-      - checkout
-      - run:
-          name: Run Unit Tests
+          name: Run Unit tests
           command: ./coverage.sh
       - codecov/upload:
           file: info.lcov
@@ -30,5 +18,3 @@ workflows:
   tests:
     jobs:
       - linux-unit-tests
-      - mac-unit-tests
-      
