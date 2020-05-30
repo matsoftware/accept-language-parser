@@ -5,12 +5,15 @@ jobs:
       - image: swift:5.2
     steps:
       - checkout
+      - run:
+          name: Pre-requisites
+          command: apk update && apk add curl
       - run: 
           name: Run Unit tests and deploy coverage
           command: ./coverage.sh
       - run:
           name: Codecov upload
-          command: curl -s https://codecov.io/bash | sh
+          command: curl -s https://codecov.io/bash | bash
 
 workflows:
   version: 2
