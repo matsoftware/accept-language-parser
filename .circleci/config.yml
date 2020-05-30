@@ -8,6 +8,9 @@ jobs:
       - run: 
           name: Run Unit tests and deploy coverage
           command: ./coverage.sh
+      - run:
+          name: Codecov upload
+          command: curl -s https://codecov.io/bash | bash
 
 workflows:
   version: 2
