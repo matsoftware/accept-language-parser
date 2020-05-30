@@ -35,7 +35,7 @@ final class ALanguageParserTests: XCTestCase {
             (input: "en-US,*;q=0.9", expectation: [.enUSW1, .allW09]),
         ]
 
-        assertions.forEach {
+        assertions.forEach { _ in 
 //            XCTAssertEqual(ALanguageParser.parse($0.input), $0.expectation)
         }
     }
