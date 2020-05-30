@@ -7,6 +7,9 @@ jobs:
       - image: swift:5.2
     steps:
       - checkout
+      - run:
+          name: Pre-requisites
+          command: apk update && apk add curl curl-dev bash
       - run: 
           name: Run Unit tests
           command: ./coverage.sh
