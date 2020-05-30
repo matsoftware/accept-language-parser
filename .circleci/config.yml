@@ -1,22 +1,35 @@
 version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.5
 jobs:
   linux-unit-tests:
     docker:
       - image: swift:5.2
     steps:
       - checkout
-      - run:
-          name: Pre-requisites
-          command: apk update && apk add curl
       - run: 
           name: Run Unit tests and deploy coverage
           command: ./coverage.sh
-      - run:
-          name: Codecov upload
-          command: curl -s https://codecov.io/bash | bash
+      - persist_to_workspace:
+          root: .
+          paths:
+            - info.lcov
+
+  deploy:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - attach_workspace:
+          at: .
+      - codecov/upload:
+          file: info.lcov
+
 
 workflows:
   version: 2
   tests:
     jobs:
       - linux-unit-tests
+      - deploy:
+        requires:
+          - linux-unit-tests
