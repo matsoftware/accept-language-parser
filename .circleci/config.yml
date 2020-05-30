@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: cimg/base:2020.01
       - image: swift:5.2
-      steps:
+    steps:
       - checkout
       - run: 
           name: Run Unit tests and deploy coverage
