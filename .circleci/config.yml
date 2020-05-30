@@ -1,5 +1,6 @@
 version: 2.1
-
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   linux:
     docker:
@@ -13,9 +14,24 @@ jobs:
           name: Run unit tests
           command: swift test
 
+  macos:  
+    xcode: 11.5.0
+    steps:
+      - checkout
+      - run:
+          name: Run Unit Tests
+          command: xcodebuild test \
+                            -scheme ALanguageParser \
+                            -destination platform="macOS" \
+                            -enableCodeCoverage YES \
+                            -derivedDataPath .build/derivedData
+      - codecov/upload:
+          file: {{ coverage_report_filepath }}
+
 workflows:
   version: 2
   tests:
     jobs:
       - linux
+      - macos
       
