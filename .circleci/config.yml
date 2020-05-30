@@ -34,5 +34,5 @@ workflows:
   tests:
     jobs:
       - linux-unit-tests
-      - macos-unit-tests
+      - mac-unit-tests
       
