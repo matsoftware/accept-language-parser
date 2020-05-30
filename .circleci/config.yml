@@ -21,13 +21,9 @@ jobs:
       - checkout
       - run:
           name: Run Unit Tests
-          command: xcodebuild test \
-                            -scheme ALanguageParser \
-                            -destination platform="macOS" \
-                            -enableCodeCoverage YES \
-                            -derivedDataPath .build/derivedData
+          command: ./coverage.sh
       - codecov/upload:
-          file: {{ coverage_report_filepath }}
+          file: info.lcov
 
 workflows:
   version: 2
