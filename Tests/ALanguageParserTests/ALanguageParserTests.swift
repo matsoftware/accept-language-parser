@@ -3,7 +3,7 @@ import ALanguageParser
 
 final class ALanguageParserTests: XCTestCase {
 
-    //MARK: AcceptedLanguage
+    // MARK: AcceptedLanguage
     func testAcceptedLanguageEquatable() {
         let left = AcceptedLanguage(code: "it", quality: 1.0, region: "IT", script: "Latin")
         let right = AcceptedLanguage(code: "it", quality: 1.0, region: "IT", script: "Latin")
@@ -11,10 +11,10 @@ final class ALanguageParserTests: XCTestCase {
     }
 
     func testAcceptedLanguageCodable() throws {
-        let al = AcceptedLanguage(code: "nn", quality: 0.9, region: "NO", script: nil)
-        let encAl = try JSONEncoder().encode(al)
+        let baseAL = AcceptedLanguage(code: "nn", quality: 0.9, region: "NO", script: nil)
+        let encAl = try JSONEncoder().encode(baseAL)
         let decAl = try JSONDecoder().decode(AcceptedLanguage.self, from: encAl)
-        XCTAssertEqual(al, decAl)
+        XCTAssertEqual(baseAL, decAl)
     }
 
     func testAcceptedLanguageComparable() {
@@ -23,16 +23,17 @@ final class ALanguageParserTests: XCTestCase {
         XCTAssertGreaterThan(right, left)
     }
 
-    //MARK: ALanguageParser
+    // MARK: ALanguageParser
     func testParseShouldReturnExpectedOrderedLanguages() {
 
         let assertions: [(input: String, expectation: [AcceptedLanguage])] = [
             (input: "it-IT", expectation: [.itITW1]),
-            (input: "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7,nn;q=0.6", expectation: [.itITW1, .itW09, .enUSW08, .enW07, .nnW06]),
+            (input: "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7,nn;q=0.6",
+             expectation: [.itITW1, .itW09, .enUSW08, .enW07, .nnW06]),
             (input: "en-US,en;q=0.7", expectation: [.enUSW1, .enW07]),
             (input: "it-IT,zh-Hant-HK;q=0.5", expectation: [.itITW1, .zhHK]),
             (input: "it-IT,en-US", expectation: [.itITW1, .enUSW1]),
-            (input: "en-US,*;q=0.9", expectation: [.enUSW1, .allW09]),
+            (input: "en-US,*;q=0.9", expectation: [.enUSW1, .allW09])
         ]
 
         assertions.forEach {

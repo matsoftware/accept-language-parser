@@ -10,7 +10,9 @@ import Foundation
 /// HTTP RFC-2616 Accept-Language parser
 /// https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4
 /// Language tags are defined by https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.10
-/// where  any two-letter primary-tag is an ISO-639 language abbreviation and any two-letter initial subtag is an ISO-3166 country code.
+/// where :
+///     - any two-letter primary-tag is an ISO-639 language abbreviation
+///     - any two-letter initial subtag is an ISO-3166 country code.
 public struct ALanguageParser {
 
     /// Parses and returns the list of user accepted languagges

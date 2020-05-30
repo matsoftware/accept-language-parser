@@ -7,7 +7,7 @@ let package = Package(
     products: [
         .library(
             name: "ALanguageParser",
-            targets: ["ALanguageParser"]),
+            targets: ["ALanguageParser"])
     ],
     dependencies: [],
     targets: [
@@ -16,6 +16,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "ALanguageParserTests",
-            dependencies: ["ALanguageParser"]),
+            dependencies: ["ALanguageParser"])
     ]
 )
