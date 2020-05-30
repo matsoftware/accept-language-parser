@@ -31,5 +31,5 @@ workflows:
     jobs:
       - linux-unit-tests
       - deploy:
-        requires:
-          - linux-unit-tests
+          requires:
+            - linux-unit-tests
