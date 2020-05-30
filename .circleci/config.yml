@@ -1,21 +1,35 @@
 version: 2.1
-
+orbs:
+  codecov: codecov/codecov@1.0.5
 jobs:
-  linux:
+  linux-unit-tests:
     docker:
       - image: swift:5.2
     steps:
       - checkout
       - run: 
-          name: Compile code
-          command: swift build
-      - run: 
-          name: Run unit tests
-          command: swift test
+          name: Run Unit tests and deploy coverage
+          command: ./coverage.sh
+      - persist_to_workspace:
+          root: .
+          paths:
+            - info.lcov
+
+  deploy:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - attach_workspace:
+          at: .
+      - codecov/upload:
+          file: info.lcov
+
 
 workflows:
   version: 2
   tests:
     jobs:
-      - linux
-      
+      - linux-unit-tests
+      - deploy:
+          requires:
+            - linux-unit-tests
