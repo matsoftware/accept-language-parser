@@ -17,6 +17,11 @@ final class ALanguageParserTests: XCTestCase {
         XCTAssertEqual(baseAL, decAl)
     }
 
+    func testAcceptedLanguageExpressibleByStringLiteral() {
+        let acceptedLanguage: AcceptedLanguage = "zh-Hant-HK;q=0.5"
+        XCTAssertEqual(acceptedLanguage, .zhHKW05)
+    }
+
     // MARK: ALanguageParser
     
     func testParseShouldReturnExpectedOrderedLanguages() {
@@ -26,7 +31,7 @@ final class ALanguageParserTests: XCTestCase {
             (input: "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7,nn;q=0.6",
              expectation: [.itITW1, .itW09, .enUSW08, .enW07, .nnW06]),
             (input: "en-US,en;q=0.7", expectation: [.enUSW1, .enW07]),
-            (input: "it-IT,zh-Hant-HK;q=0.5", expectation: [.itITW1, .zhHK]),
+            (input: "it-IT,zh-Hant-HK;q=0.5", expectation: [.itITW1, .zhHKW05]),
             (input: "it-IT,en-US", expectation: [.itITW1, .enUSW1]),
             (input: "en-US,*;q=0.9", expectation: [.enUSW1, .allW09])
         ]
@@ -39,7 +44,7 @@ final class ALanguageParserTests: XCTestCase {
     static var allTests = [
         ("testAcceptedLanguageEquatable", testAcceptedLanguageEquatable),
         ("testAcceptedLanguageCodable", testAcceptedLanguageCodable),
-        ("testAcceptedLanguageComparable", testAcceptedLanguageComparable),
+        ("testAcceptedLanguageExpressibleByStringLiteral", testAcceptedLanguageExpressibleByStringLiteral),
         ("testParseShouldReturnExpectedOrderedLanguages", testParseShouldReturnExpectedOrderedLanguages)
     ]
 }
@@ -53,7 +58,7 @@ extension AcceptedLanguage {
     static let enUSW08 = AcceptedLanguage(code: "en", quality: 0.8, region: "US", script: nil)
     static let enW07 = AcceptedLanguage(code: "en", quality: 0.7, region: nil, script: nil)
     static let nnW06 = AcceptedLanguage(code: "nn", quality: 0.6, region: nil, script: nil)
-    static let zhHK = AcceptedLanguage(code: "zh", quality: 0.5, region: "HK", script: "Hant")
+    static let zhHKW05 = AcceptedLanguage(code: "zh", quality: 0.5, region: "HK", script: "Hant")
     static let allW09 = AcceptedLanguage(code: "*", quality: 0.9, region: nil, script: nil)
 
 }

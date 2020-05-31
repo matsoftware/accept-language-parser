@@ -27,7 +27,8 @@ public struct ALanguageParser {
 }
 
 /// Type representing the accepted language returned from a parsed Accept-Language HTTP Header
-public struct AcceptedLanguage: Equatable, Codable {
+public struct AcceptedLanguage: Equatable, Codable, ExpressibleByStringLiteral {
+
     /// Language code
     public var code: String
     /// The weight of this AcceptedLanguage in a list
@@ -50,13 +51,19 @@ public struct AcceptedLanguage: Equatable, Codable {
         self.script = script
     }
 
+    /// AcceptedLanguage String Literal initializer
+    /// - Parameter value: An accepted language in an Accept-Language valid string
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(value)
+    }
+
     fileprivate init(_ rawString: String) {
-        let comp = rawString.split(separator: ";")
-        let rawLocale = Locale(identifier: String(comp.first ?? ""))
+        let components = rawString.split(separator: ";")
+        let rawLocale = Locale(identifier: String(components.first ?? ""))
+        let rawQuality = String(components.last ?? "1.0").replacingOccurrences(of: "q=", with: "")
         code = rawLocale.languageCode ?? ""
         region = rawLocale.regionCode
         script = rawLocale.scriptCode
-        let rawQuality = String(comp.last ?? "1.0").replacingOccurrences(of: "q=", with: "")
         quality = Float(rawQuality) ?? 1.0
     }
 }
