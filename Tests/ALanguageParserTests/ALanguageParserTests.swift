@@ -1,26 +1,14 @@
+//
+//  ALanguageParserTests.swift
+//
+//
+//  Created by Mattia Campolese on 31/05/2020.
+//
+
 import XCTest
 import ALanguageParser
 
 final class ALanguageParserTests: XCTestCase {
-
-    // MARK: AcceptedLanguage
-    func testAcceptedLanguageEquatable() {
-        let left = AcceptedLanguage(code: "it", quality: 1.0, region: "IT", script: "Latin")
-        let right = AcceptedLanguage(code: "it", quality: 1.0, region: "IT", script: "Latin")
-        XCTAssertEqual(left, right)
-    }
-
-    func testAcceptedLanguageCodable() throws {
-        let baseAL = AcceptedLanguage(code: "nn", quality: 0.9, region: "NO", script: nil)
-        let encAl = try JSONEncoder().encode(baseAL)
-        let decAl = try JSONDecoder().decode(AcceptedLanguage.self, from: encAl)
-        XCTAssertEqual(baseAL, decAl)
-    }
-
-    func testAcceptedLanguageExpressibleByStringLiteral() {
-        let acceptedLanguage: AcceptedLanguage = "zh-Hant-HK;q=0.5"
-        XCTAssertEqual(acceptedLanguage, .zhHKW05)
-    }
 
     // MARK: ALanguageParser
     
@@ -33,7 +21,8 @@ final class ALanguageParserTests: XCTestCase {
             (input: "en-US,en;q=0.7", expectation: [.enUSW1, .enW07]),
             (input: "it-IT,zh-Hant-HK;q=0.5", expectation: [.itITW1, .zhHKW05]),
             (input: "it-IT,en-US", expectation: [.itITW1, .enUSW1]),
-            (input: "en-US,*;q=0.9", expectation: [.enUSW1, .allW09])
+            (input: "en-US,*;q=0.9", expectation: [.enUSW1, .allW09]),
+            (input: "el;q=0.35", expectation: [.elW035]),
         ]
 
         assertions.forEach {
@@ -41,24 +30,9 @@ final class ALanguageParserTests: XCTestCase {
         }
     }
 
+    // MARK: Tests array
+
     static var allTests = [
-        ("testAcceptedLanguageEquatable", testAcceptedLanguageEquatable),
-        ("testAcceptedLanguageCodable", testAcceptedLanguageCodable),
-        ("testAcceptedLanguageExpressibleByStringLiteral", testAcceptedLanguageExpressibleByStringLiteral),
         ("testParseShouldReturnExpectedOrderedLanguages", testParseShouldReturnExpectedOrderedLanguages)
     ]
-}
-
-// MARK: Tests support
-extension AcceptedLanguage {
-
-    static let itITW1 = AcceptedLanguage(code: "it", quality: 1.0, region: "IT", script: nil)
-    static let itW09 = AcceptedLanguage(code: "it", quality: 0.9, region: nil, script: nil)
-    static let enUSW1 = AcceptedLanguage(code: "en", quality: 1.0, region: "US", script: nil)
-    static let enUSW08 = AcceptedLanguage(code: "en", quality: 0.8, region: "US", script: nil)
-    static let enW07 = AcceptedLanguage(code: "en", quality: 0.7, region: nil, script: nil)
-    static let nnW06 = AcceptedLanguage(code: "nn", quality: 0.6, region: nil, script: nil)
-    static let zhHKW05 = AcceptedLanguage(code: "zh", quality: 0.5, region: "HK", script: "Hant")
-    static let allW09 = AcceptedLanguage(code: "*", quality: 0.9, region: nil, script: nil)
-
 }

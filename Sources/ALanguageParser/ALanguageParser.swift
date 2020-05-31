@@ -15,7 +15,7 @@ import Foundation
 ///     - any two-letter initial subtag is an ISO-3166 country code.
 public struct ALanguageParser {
 
-    /// Parses and returns the list of user accepted languagges
+    /// Parses and returns the list of user accepted languages
     /// - Parameter acceptLanguage: A valid RFC-2616 Accept-Language string
     /// - Returns: an ordered list of `AcceptedLanguage` parsed from the `acceptLanguage` string
     public static func parse(_ acceptLanguage: String) -> [AcceptedLanguage] {
@@ -24,46 +24,4 @@ public struct ALanguageParser {
             .sorted { $0.quality > $1.quality }
     }
 
-}
-
-/// Type representing the accepted language returned from a parsed Accept-Language HTTP Header
-public struct AcceptedLanguage: Equatable, Codable, ExpressibleByStringLiteral {
-
-    /// Language code
-    public var code: String
-    /// The weight of this AcceptedLanguage in a list
-    public var quality: Float
-    /// The region of the accepted language
-    public var region: String?
-    /// The script code of the accepted language
-    public var script: String?
-
-    /// AcceptedLanguage designated initializer
-    /// - Parameters:
-    ///   - code: Language code
-    ///   - quality: The weight of this AcceptedLanguage in a list
-    ///   - region: The region of the accepted language
-    ///   - script: The script code of the accepted language
-    public init(code: String, quality: Float, region: String?, script: String?) {
-        self.code = code
-        self.quality = quality
-        self.region = region
-        self.script = script
-    }
-
-    /// AcceptedLanguage String Literal initializer
-    /// - Parameter value: An accepted language in an Accept-Language valid string
-    public init(stringLiteral value: StringLiteralType) {
-        self.init(value)
-    }
-
-    fileprivate init(_ rawString: String) {
-        let components = rawString.split(separator: ";")
-        let rawLocale = Locale(identifier: String(components.first ?? ""))
-        let rawQuality = String(components.last ?? "1.0").replacingOccurrences(of: "q=", with: "")
-        code = rawLocale.languageCode ?? ""
-        region = rawLocale.regionCode
-        script = rawLocale.scriptCode
-        quality = Float(rawQuality) ?? 1.0
-    }
 }
