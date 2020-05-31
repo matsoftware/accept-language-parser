@@ -17,13 +17,8 @@ final class ALanguageParserTests: XCTestCase {
         XCTAssertEqual(baseAL, decAl)
     }
 
-    func testAcceptedLanguageComparable() {
-        let left = AcceptedLanguage(code: "it", quality: 0.7, region: "IT", script: nil)
-        let right = AcceptedLanguage(code: "no", quality: 1.0, region: "NN", script: nil)
-        XCTAssertGreaterThan(right, left)
-    }
-
     // MARK: ALanguageParser
+    
     func testParseShouldReturnExpectedOrderedLanguages() {
 
         let assertions: [(input: String, expectation: [AcceptedLanguage])] = [

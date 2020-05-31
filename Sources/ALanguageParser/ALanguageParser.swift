@@ -60,11 +60,3 @@ public struct AcceptedLanguage: Equatable, Codable {
         quality = Float(rawQuality) ?? 1.0
     }
 }
-
-extension AcceptedLanguage: Comparable {
-
-    public static func < (lhs: AcceptedLanguage, rhs: AcceptedLanguage) -> Bool {
-        lhs.quality < rhs.quality
-    }
-
-}
