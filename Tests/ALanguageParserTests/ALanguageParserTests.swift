@@ -30,9 +30,47 @@ final class ALanguageParserTests: XCTestCase {
         }
     }
 
+    func testPickNotLooseShouldReturnExpectedOrderedLanguages() {
+
+        let acceptLanguageExample = "it-IT,it;q=0.9,en-US;q=0.8,es;q=0.7,nn;q=0.6"
+
+        let assertions: [(input: [AcceptedLanguage], expectation: String?)] = [
+            (input: ["it", "it-IT", "zh"], expectation: "it-IT"),
+            (input: ["no"], expectation: nil),
+            (input: ["en"], expectation: nil)
+        ]
+
+        assertions.forEach {
+            XCTAssertEqual(ALanguageParser.pick($0.input, acceptLanguage: acceptLanguageExample), $0.expectation)
+        }
+
+    }
+
+    func testPickLooseShouldReturnExpectedOrderedLanguages() {
+
+        let acceptLanguageExample = "it-IT,it;q=0.9,en-US;q=0.8,es;q=0.7,nn;q=0.6,fr-CA;q=0.5"
+
+        let assertions: [(input: [AcceptedLanguage], expectation: String?)] = [
+            (input: ["it", "it-IT", "zh"], expectation: "it"),
+            (input: ["it-IT", "it", "zh"], expectation: "it-IT"),
+            (input: ["fr"], expectation: "fr"),
+            (input: ["fr-CA"], expectation: "fr-CA"),
+            (input: ["no"], expectation: nil),
+            (input: ["en"], expectation: "en")
+        ]
+
+        assertions.forEach {
+            XCTAssertEqual(ALanguageParser.pick($0.input, acceptLanguage: acceptLanguageExample, loose: true),
+                           $0.expectation)
+        }
+
+    }
+
     // MARK: Tests array
 
     static var allTests = [
-        ("testParseShouldReturnExpectedOrderedLanguages", testParseShouldReturnExpectedOrderedLanguages)
+        ("testParseShouldReturnExpectedOrderedLanguages", testParseShouldReturnExpectedOrderedLanguages),
+        ("testPickNotLooseShouldReturnExpectedOrderedLanguages", testPickNotLooseShouldReturnExpectedOrderedLanguages),
+        ("testPickLooseShouldReturnExpectedOrderedLanguages", testPickLooseShouldReturnExpectedOrderedLanguages)
     ]
 }

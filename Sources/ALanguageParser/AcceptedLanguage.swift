@@ -47,6 +47,7 @@ public struct AcceptedLanguage: Equatable, Codable, ExpressibleByStringLiteral {
         script = rawLocale.scriptCode
         quality = Float(rawQuality) ?? 1.0
     }
+
 }
 
 // MARK: CustomStringConvertible
