@@ -102,7 +102,6 @@ Please open an issue on GitHub or fork the repository to make changes.
 
 Before raising any PR, please make sure that the tests are passing on the _Linux_ platform. 
 
-
 ### Running the tests on Linux with Docker
 
 You can use [Docker](https://docs.docker.com/get-docker/) to download the Swift image and perform tests on your MacOS/Windows machine.
@@ -115,13 +114,13 @@ docker pull swift
 
 Once the image has been download, from the root folder of your forked repository you can start the container in privileged mode and use a bind mount to let Docker access your folder:
 
-```
+```bash
 docker run -it --privileged --mount type=bind,source=$(pwd),target=/app swift /bin/bash
 ```
 
 Finally, you can run the tests:
-```
-root@c4706264baa1:/app# swift test
+```bash
+root@c4706264baa1:/app$ swift test
 ```
 
 ## License
