@@ -96,11 +96,41 @@ pod 'ALanguageParser'
 
 Run `pod install` and then open your workspace to launch Xcode.
 
+## Contributions
+
+Please open an issue on GitHub or fork the repository to make changes.
+
+Before raising any PR, please make sure that the tests are passing on the _Linux_ platform. 
+
+
+### Running the tests on Linux with Docker
+
+You can use [Docker](https://docs.docker.com/get-docker/) to download the Swift image and perform tests on your MacOS/Windows machine.
+
+Once Docker and its CLI are installed, you can get the image from [Docker Hub](https://hub.docker.com/_/swift) by running:
+
+```bash
+docker pull swift
+```
+
+Once the image has been download, from the root folder of your forked repository you can start the container in privileged mode and use a bind mount to let Docker access your folder:
+
+```
+docker run -it --privileged --mount type=bind,source=$(pwd),target=/app swift /bin/bash
+```
+
+Finally, you can run the tests:
+```
+root@c4706264baa1:/app# swift test
+```
+
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmatsoftware%2Faccept-language-parser.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmatsoftware%2Faccept-language-parser?ref=badge_large)
 
 ## Author
 
-Created by [Mattia Campolese](https://www.linkedin.com/in/matcamp/). 
+Created by [Mattia Campolese](https://www.linkedin.com/in/matcamp/).
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/matsoftware?style=social)](https://twitter.com/matsoftware)
 
 Please also check out [swift code metrics](https://github.com/matsoftware/swift-code-metrics), the code metrics analyzer for Swift projects.
