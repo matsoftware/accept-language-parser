@@ -22,7 +22,7 @@ final class ALanguageParserTests: XCTestCase {
             (input: "it-IT,zh-Hant-HK;q=0.5", expectation: [.itITW1, .zhHKW05]),
             (input: "it-IT,en-US", expectation: [.itITW1, .enUSW1]),
             (input: "en-US,*;q=0.9", expectation: [.enUSW1, .allW09]),
-            (input: "el;q=0.35", expectation: [.elW035]),
+            (input: "el;q=0.35", expectation: [.elW035])
         ]
 
         assertions.forEach {

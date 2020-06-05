@@ -38,7 +38,7 @@ final class AcceptedLanguageTests: XCTestCase {
         let assertions: [(input: String, expectation: AcceptedLanguage)] = [
             (input: "zh-Hant-HK;q=0.5", expectation: .zhHKW05),
             (input: "it-IT", expectation:  .itITW1),
-            (input: "es", expectation: .es),
+            (input: "es", expectation: .esW1),
             (input: "it;q=0.9", expectation: .itW09),
             (input: "en-US;q=0.8", expectation: .enUSW08),
             (input: "el;q=0.35", expectation: .elW035)
@@ -55,7 +55,8 @@ final class AcceptedLanguageTests: XCTestCase {
     static var allTests = [
         ("testAcceptedLanguageEquatable", testAcceptedLanguageEquatable),
         ("testAcceptedLanguageCodable", testAcceptedLanguageCodable),
-        ("testAcceptedLanguageExpressibleByStringLiteralValidRepresentation", testAcceptedLanguageExpressibleByStringLiteralValidRepresentation),
+        ("testAcceptedLanguageExpressibleByStringLiteralValidRepresentation",
+         testAcceptedLanguageExpressibleByStringLiteralValidRepresentation),
         ("testAcceptedLanguageCustomStringConvertible", testAcceptedLanguageCustomStringConvertible)
     ]
 

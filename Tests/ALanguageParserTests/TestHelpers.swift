@@ -18,7 +18,7 @@ extension AcceptedLanguage {
     static let enUSW08 = AcceptedLanguage(code: "en", quality: 0.8, region: "US", script: nil)
     static let enW07 = AcceptedLanguage(code: "en", quality: 0.7, region: nil, script: nil)
     static let nnW06 = AcceptedLanguage(code: "nn", quality: 0.6, region: nil, script: nil)
-    static let es = AcceptedLanguage(code: "es", quality: 1.0, region: nil, script: nil)
+    static let esW1 = AcceptedLanguage(code: "es", quality: 1.0, region: nil, script: nil)
     static let zhHKW05 = AcceptedLanguage(code: "zh", quality: 0.5, region: "HK", script: "Hant")
     static let allW09 = AcceptedLanguage(code: "*", quality: 0.9, region: nil, script: nil)
     static let any = AcceptedLanguage(code: "any", quality: 1.0, region: nil, script: nil)
