@@ -11,7 +11,6 @@ import ALanguageParser
 final class ALanguageParserTests: XCTestCase {
 
     // MARK: ALanguageParser
-    
     func testParseShouldReturnExpectedOrderedLanguages() {
 
         let assertions: [(input: String, expectation: [AcceptedLanguage])] = [
@@ -67,7 +66,6 @@ final class ALanguageParserTests: XCTestCase {
     }
 
     // MARK: Tests array
-
     static var allTests = [
         ("testParseShouldReturnExpectedOrderedLanguages", testParseShouldReturnExpectedOrderedLanguages),
         ("testPickNotLooseShouldReturnExpectedOrderedLanguages", testPickNotLooseShouldReturnExpectedOrderedLanguages),
