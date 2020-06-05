@@ -1,6 +1,6 @@
 # ALanguageParser
 
-[![CircleCI](https://circleci.com/gh/matsoftware/accept-language-parser.svg?style=shield)](https://circleci.com/gh/matsoftware/accept-language-parser) [![codecov](https://codecov.io/gh/matsoftware/accept-language-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/matsoftware/accept-language-parser) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ede74115487a4462860e7d7ce9f14db8)](https://www.codacy.com/manual/matsoftware/accept-language-parser?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matsoftware/accept-language-parser&amp;utm_campaign=Badge_Grade) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmatsoftware%2Faccept-language-parser.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmatsoftware%2Faccept-language-parser?ref=badge_shield) [![License](https://img.shields.io/badge/license-MIT-blue.svg?x=1)](LICENSE) [![Size](https://img.shields.io/github/languages/code-size/matsoftware/accept-language-parser)](Size)
+[![CircleCI](https://circleci.com/gh/matsoftware/accept-language-parser.svg?style=shield)](https://circleci.com/gh/matsoftware/accept-language-parser) [![codecov](https://codecov.io/gh/matsoftware/accept-language-parser/branch/master/graph/badge.svg)](https://codecov.io/gh/matsoftware/accept-language-parser) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ede74115487a4462860e7d7ce9f14db8)](https://www.codacy.com/manual/matsoftware/accept-language-parser?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matsoftware/accept-language-parser&amp;utm_campaign=Badge_Grade) ![Cocoapods platforms](https://img.shields.io/cocoapods/p/ALanguageParser) [![Size](https://img.shields.io/github/languages/code-size/matsoftware/accept-language-parser)](Size) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmatsoftware%2Faccept-language-parser.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmatsoftware%2Faccept-language-parser?ref=badge_shield) [![License](https://img.shields.io/badge/license-MIT-blue.svg?x=1)](LICENSE)
 
 <p align="center">
 Lightweight HTTP RFC-2616 <b><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4" target="_blank">Accept-Language</a></b> parser in Swift.
@@ -85,6 +85,16 @@ Then in your target, please add the `ALanguageParser` dependency:
 ```
 
 _Note: There's a current [issue](https://stackoverflow.com/questions/60943858/why-cant-i-use-swiftpm-as-a-dependency-using-swift-package-manager) with Swift Tools Version to 5.2. Please use 5.1 for the time being in your Package.json._
+
+### CocoaPods
+
+Add the pod `ALanguageParser` to your Podfile:
+
+```ruby
+pod 'ALanguageParser'
+```
+
+Run `pod install` and then open your workspace to launch Xcode.
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmatsoftware%2Faccept-language-parser.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmatsoftware%2Faccept-language-parser?ref=badge_large)
