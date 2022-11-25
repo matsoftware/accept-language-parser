@@ -72,19 +72,17 @@ In loose mode the order of `supportedLanguages` matters, as it is the first part
 
 ### Swift Package Manager
 
-The library, currently being developed in Swift 5.2, can be integrated by adding the following entry to your dependencies array in the `Package.swift` file:
+The library, currently being developed in Swift 5.7, can be integrated by adding the following entry to your dependencies array in the `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/matsoftware/accept-language-parser.git", from: "1.0.0")
+.package(url: "https://github.com/matsoftware/accept-language-parser.git", from: "1.1.0")
 ```
 
 Then in your target, please add the `ALanguageParser` dependency:
 
 ```swift
-.product(name: "ALanguageParser", package: "ALanguageParser")
+.product(name: "ALanguageParser", package: "accept-language-parser")
 ```
-
-_Note: There's a current [issue](https://stackoverflow.com/questions/60943858/why-cant-i-use-swiftpm-as-a-dependency-using-swift-package-manager) with Swift Tools Version to 5.2. Please use 5.1 for the time being in your Package.json._
 
 ### CocoaPods
 
