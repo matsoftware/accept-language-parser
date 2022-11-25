@@ -1,10 +1,10 @@
 version: 2.1
 orbs:
-  codecov: codecov/codecov@1.0.5
+  codecov: codecov/codecov@3.2.4
 jobs:
   linux-unit-tests:
     docker:
-      - image: swift:5.2
+      - image: swift:5.6
     steps:
       - checkout
       - run: 
@@ -17,7 +17,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/base:2020.01
+      - image: cimg/base:2022.11
     steps:
       - checkout
       - attach_workspace:
