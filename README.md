@@ -81,7 +81,7 @@ The library, currently being developed in Swift 5.7, can be integrated by adding
 Then in your target, please add the `ALanguageParser` dependency:
 
 ```swift
-.product(name: "ALanguageParser", package: "ALanguageParser")
+.product(name: "ALanguageParser", package: "accept-language-parser")
 ```
 
 ### CocoaPods
